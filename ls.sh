@@ -1,0 +1,1 @@
+ ls -pr | grep -v /
