@@ -1,5 +1,6 @@
 #!/bin/bash
 #rename
+find . -maxdepth 1 -type f -exec sh -c 'newname=$(echo "$0" | tr -cd "[:digit:]_-"); newname=$(echo "$newname" | sed -e "s/[-_]*$//" -e "s/^[-_]*//"); [ "$newname" != "$0" ] && [ -n "$newname" ] && [ ! -e "$newname" ] && mv "$0" "$newname"' {} \;
 for file in *; do
   newname=$(echo "$file" | tr -cd '[:digit:]_-')
   newname=$(echo $newname | sed -e 's/[-_]*$//' -e 's/^[-_]*//')
@@ -12,6 +13,7 @@ for file in *; do
   fi
 done
 #find_extension
+find . -type f -exec sh -c 'mime_type=$(file --mime-type -b "$0"); case "$mime_type" in "image/jpeg") new_extension=".jpg" ;; "image/heic") new_extension=".heic" ;; "image/png") new_extension=".png" ;; *) new_extension=".outro" ;; esac; filename=$(basename "$0"); extension="${filename##*.}"; [ "$extension" != "${new_extension#.}" ] && new_filename="${filename%.*}$new_extension" && mv "$0" "$(dirname "$0")/$new_filename"' {} \;
 find . -type f | while read FILE; do
     mime_type=$(file --mime-type -b "$FILE")
 
