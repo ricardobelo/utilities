@@ -13,20 +13,23 @@ done
 
 find . -type f | while read FILE; do
     mime_type=$(file --mime-type -b "$FILE")
-    
+
     case "$mime_type" in
         "image/jpeg") new_extension=".jpg" ;;
-        "image/heic") new_extension=".heic" ;;        
+        "image/heic") new_extension=".heic" ;;
         "image/png") new_extension=".png" ;;
-        # Adicione outros tipos MIME e extensões correspondentes conforme necessário
         *) new_extension=".outro" ;;  # Extensão padrão para tipos MIME desconhecidos
     esac
-    
-    if [ "${FILE##*.}" != "${new_extension#.}" ]; then
-        new_filename="${FILE%.*}$new_extension"
-        mv "$FILE" "$new_filename"
+
+    filename=$(basename "$FILE")
+    extension="${filename##*.}"
+
+    if [ "$extension" != "${new_extension#.}" ]; then
+        new_filename="${filename%.*}$new_extension"
+        mv "$FILE" "$(dirname "$FILE")/$new_filename"
     fi
 done
+
 
 for i in *.HEIC *.heic; do heif-convert "$i" "${i%.heic}.jpg"; done && for i in *.PNG *.png *.WEBP *.webp; do mogrify -format jpg "$i"; done
 rm -rf *.PNG *.png *.HEIC *.heic *.WEBP *.webp 
