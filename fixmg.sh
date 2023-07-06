@@ -1,4 +1,5 @@
 #!/bin/bash
+#rename
 for file in *; do
   newname=$(echo "$file" | tr -cd '[:digit:]_-')
   newname=$(echo $newname | sed -e 's/[-_]*$//' -e 's/^[-_]*//')
@@ -10,7 +11,7 @@ for file in *; do
     fi
   fi
 done
-
+#find_extension
 find . -type f | while read FILE; do
     mime_type=$(file --mime-type -b "$FILE")
 
