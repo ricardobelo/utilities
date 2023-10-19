@@ -27,3 +27,7 @@
 #meta_description = CONCAT("", lc_product_description.meta_description, "Preto"),
 #meta_keyword = CONCAT("", lc_product_description.meta_keyword, "Preto"),
 #WHERE product_id IN (SELECT product_id FROM lc_product WHERE date_available = '2023-07-21' and model = 'crepe_beethoven' and sku = 13976);
+
+#ADJUST CATEGORIES SUBCATEGORIES
+INSERT INTO lc_product_to_category (product_id, category_id)
+SELECT product_id, 99999 FROM lc_product WHERE date_available = '2023-07-27' and model = 'crepe_alfaiataria';
