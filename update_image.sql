@@ -32,6 +32,11 @@
 INSERT INTO lc_product_to_category (product_id, category_id)
 SELECT product_id, 99999 FROM lc_product WHERE date_available = '2023-07-27' and model = 'crepe_alfaiataria';
 
+#ADJUST CATEGORIES SUBCATEGORIES IF NOT EXIST
+INSERT INTO lc_product_to_category (product_id, category_id) 
+SELECT product_id, 99999 FROM lc_product WHERE model IN ('category_01', 'category_02') AND NOT EXISTS ( SELECT 1 FROM lc_product_to_category ptc WHERE ptc.product_id = lc_product.product_id AND ptc.category_id = 99999 );
+
 #DELETE
 DELETE FROM lc_product_to_category
 WHERE product_id IN (SELECT product_id FROM lc_product WHERE model LIKE '%zibeline%') AND category_id = 525;
+
