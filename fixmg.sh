@@ -13,7 +13,7 @@ for file in *; do
   fi
 done
 #find_extension
-find . -type f -exec sh -c 'mime_type=$(file --mime-type -b "$0"); case "$mime_type" in "image/jpeg") new_extension=".jpg" ;; "image/heic") new_extension=".heic" ;; "image/png") new_extension=".png" ;; *) new_extension=".outro" ;; esac; filename=$(basename "$0"); extension="${filename##*.}"; [ "$extension" != "${new_extension#.}" ] && new_filename="${filename%.*}$new_extension" && mv "$0" "$(dirname "$0")/$new_filename"' {} \;
+find . -type f -exec sh -c 'mime_type=$(file --mime-type -b "$0"); case "$mime_type" in "image/jpeg") new_extension=".jpg" ;; "image/heic") new_extension=".heic" ;; "image/png") new_extension=".png" ;; "image/webp") new_extension=".webp" ;; *) new_extension=".outro" ;; esac; filename=$(basename "$0"); extension="${filename##*.}"; [ "$extension" != "${new_extension#.}" ] && new_filename="${filename%.*}$new_extension" && mv "$0" "$(dirname "$0")/$new_filename"' {} \;
 find . -type f | while read FILE; do
     mime_type=$(file --mime-type -b "$FILE")
 
