@@ -28,6 +28,51 @@
 #meta_keyword = CONCAT("", lc_product_description.meta_keyword, "Preto"),
 #WHERE product_id IN (SELECT product_id FROM lc_product WHERE date_available = '2023-07-21' and model = 'category_01' and sku = 13976);
 
+
+
+
+UPDATE lc_product_description
+SET
+
+  name = replace(lc_product_description.name, 'Cetim Bucol', 'Cetim Bucol Princese'),
+  description = replace(lc_product_description.description, 'Cetim Bucol', 'Cetim Bucol Princese'),
+  meta_title = replace(lc_product_description.meta_description, 'Cetim Bucol', 'Cetim Bucol Princese'),
+  meta_description = replace(lc_product_description.meta_description, 'Cetim Bucol', 'Cetim Bucol Princese'),
+  
+  meta_keyword = REPLACE(
+    REPLACE(
+      REPLACE(meta_keyword, 'Cetim Bucol ', 'Cetim Bucol Princese '),
+      'Cetim Bucol,', 'Cetim Bucol Princese,'
+    ),
+    'Cetim, Bucol,', 'Cetim, Bucol, Princese,'
+  ),
+  
+  tag = REPLACE(
+    REPLACE(
+      REPLACE(tag, 'Cetim Bucol ', 'Cetim Bucol Princese '),
+      'Cetim Bucol,', 'Cetim Bucol Princese,'
+    ),
+    'Cetim, Bucol,', 'Cetim, Bucol, Princese,'
+  )
+  
+WHERE
+  product_id IN (
+    SELECT product_id
+    FROM lc_product
+    WHERE date_available = '2023-12-20' AND model = 'cetim_bucol' AND sku != 14952
+  );
+
+
+
+
+
+
+
+
+
+
+
+
 #ADJUST CATEGORIES SUBCATEGORIES
 INSERT INTO lc_product_to_category (product_id, category_id)
 SELECT product_id, 99999 FROM lc_product WHERE date_available = '2023-07-27' and model = 'category_01';
@@ -45,4 +90,11 @@ WHERE lc_product.model IN ('category_01', 'category_02') AND lc_product_to_categ
 #DELETE
 DELETE FROM lc_product_to_category
 WHERE product_id IN (SELECT product_id FROM lc_product WHERE model LIKE '%category_01%') AND category_id = 525;
+
+
+
+
+
+
+
 
