@@ -3,7 +3,13 @@
 #UPDATE lc_product SET image = CONCAT("catalog/tecidos/zibeline/", lc_product.sku, ".jpg") WHERE date_available = '2022-12-12' and model = 'zibeline';
 #list
 #SELECT * FROM lc_product_description WHERE product_id IN (SELECT product_id FROM lc_product WHERE date_available = '2023-04-17' and model = 'cortina');
-#Replace
+
+#--------------------------------------------------
+#SELECT p.product_id as ID, model as MODELO, sku, name as NOME, price as PREÇO, date_added as DATa, date_modified as MODIFICADO_EM FROM lc_product p LEFT JOIN lc_product_description pd ON (p.product_id = pd.product_id) where STATUS = 1;
+#itens_disponiveis_em_lojascrispim_data
+#--------------------------------------------------
+
+  #Replace
 #UPDATE lc_product_description 
 #SET name = replace(name, 'Flamê', 'Flame'),
 #description = replace(description, 'Flamê', 'Flame'),
