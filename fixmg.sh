@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #salve names
-ls -pr | grep -v / > ../$(basename $(pwd)).txt
+## ls -pr | grep -v / > ../$(basename $(pwd)).txt
+ls -pr | grep -v / | sed -E 's/_[^_]*$//' | sed -E 's/(.*)\..*/\1/' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2)); print}' > ../$(basename $(pwd)).txt
+
 
 #rename
 find . -maxdepth 1 -type f -exec sh -c 'newname=$(echo "$0" | tr -cd "[:digit:]_-" | cut -c1-5); newname=$(echo "$newname" | sed -e "s/[-_]*$//" -e "s/^[-_]*//"); [ "$newname" != "$0" ] && [ -n "$newname" ] && [ ! -e "$newname" ] && mv "$0" "$newname"' {} \;
