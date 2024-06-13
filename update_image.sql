@@ -76,6 +76,8 @@ WHERE
 
 
 
+UPDATE lc_product_description SET description = replace(description, 'Zibeline ', '<br/>Zibeline ') WHERE product_id IN (SELECT product_id FROM lc_product WHERE date_available = '2024-06-13' and model = 'zibeline');
+
 
 
 
