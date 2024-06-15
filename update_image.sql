@@ -1,5 +1,9 @@
 
+# update image and date added
 UPDATE lc_product SET date_added = '2024-06-14',  image = CONCAT("catalog/tecidos/crepe_beethoven/", lc_product.sku, ".jpg") WHERE date_available = '2024-06-14' and model = 'crepe_beethoven';
+
+# update by sku
+UPDATE lc_product SET STATUS = 0 WHERE sku IN (11825,11826,11830,11835,11839,11840,11842,11843,11845,11846,13936,14456,14459,14460);
 
 #SELECT *  FROM `lc_product` WHERE `date_available` = '2022-12-12';
 #SELECT *  FROM `lc_product` WHERE product_id = 3021;
