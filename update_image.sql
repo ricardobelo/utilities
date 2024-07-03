@@ -1,5 +1,7 @@
 
 # update image and date added
+  
+UPDATE lc_product SET STATUS = 1, date_added = '2024-07-02',  image = CONCAT("catalog/tecidos/lyocell/", lc_product.sku, ".jpg") WHERE date_available = '2024-07-02' and model = 'lyocell';
 UPDATE lc_product SET date_added = '2024-06-14',  image = CONCAT("catalog/tecidos/crepe_beethoven/", lc_product.sku, ".jpg") WHERE date_available = '2024-06-14' and model = 'crepe_beethoven';
 
 # update by sku
