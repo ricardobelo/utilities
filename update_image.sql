@@ -1,3 +1,13 @@
+#to remember
+
+UPDATE lc_product SET STATUS = 1, date_available = '2024-10-28', date_added = '2024-10-28',  image = CONCAT("catalog/tecidos/crepe_madonn/", lc_product.sku, ".jpg") WHERE date_available = '2024-10-28' and model = 'crepe_madonn';
+
+UPDATE lc_product_description SET
+description = replace(description, '1,50m de Largura', '1,47cm de Largura'),
+WHERE product_id IN (SELECT product_id FROM lc_product WHERE date_available = '2024-10-28' and model = 'crepe_madonn');
+
+UPDATE lc_product_attribute SET text = 'Sim' WHERE product_id IN (SELECT product_id FROM lc_product WHERE date_available = '2024-10-28' and model = 'crepe_madonn') AND attribute_id = 12;
+
 
 # update image and date added
   
