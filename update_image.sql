@@ -1,5 +1,6 @@
 #to remember
-
+  
+UPDATE lc_product SET STATUS = 1, date_added = '2024-12-21',  image = CONCAT("catalog/tecidos/100_por-cento_linho/", lc_product.sku, ".jpg") WHERE date_available = '2024-12-21' and model = '100_por-cento_linho';
 UPDATE lc_product SET STATUS = 1, date_available = '2024-10-28', date_added = '2024-10-28',  image = CONCAT("catalog/tecidos/crepe_madonn/", lc_product.sku, ".jpg") WHERE date_available = '2024-10-28' and model = 'crepe_madonn';
 
 UPDATE lc_product_description SET
