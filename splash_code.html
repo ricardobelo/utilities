@@ -1,0 +1,100 @@
+  <!-- Splash Publicitário -->
+  <style>
+    .cookie-splash {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .cookie-content {
+      position: relative;
+      background: #ffffff;
+      padding: 0;
+      max-width: 480px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .cookie-content a {
+      display: block;
+    }
+
+    .cookie-content img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Botão fechar */
+    .cookie-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .cookie-close:hover {
+      background: rgba(0,0,0,0.85);
+    }
+  </style>
+
+
+  <div id="cookie-splash" class="cookie-splash">
+    <div class="cookie-content">
+      <button class="cookie-close" id="cookie-close" aria-label="Fechar">✕</button>
+
+      <!-- IMAGEM COM LINK -->
+      <a href="http://link" rel="noopener">
+        <img src="data:image/jpg;base64" alt="Campanha promocional">
+      </a>
+    </div>
+  </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const splash = document.getElementById('cookie-splash');
+      const closeBtn = document.getElementById('cookie-close');
+
+      const hoje = new Date();
+      const dia = hoje.getDate();
+
+      const inicio = 20;
+      const fim = 26;
+
+      const dentroDoPeriodo = dia >= inicio && dia <= fim;
+
+      function fecharSplash() {
+        localStorage.setItem('splashPublicidadeVisto', 'true');
+        splash.style.display = 'none';
+      }
+
+      if (dentroDoPeriodo && !localStorage.getItem('splashPublicidadeVisto')) {
+        splash.style.display = 'flex';
+      }
+
+      closeBtn.addEventListener('click', fecharSplash);
+
+      // Fecha ao pressionar ESC
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && splash.style.display === 'flex') {
+          fecharSplash();
+        }
+      });
+    });
+  </script>
+
+    <!-- // Fim - Splash Publicitário -->
